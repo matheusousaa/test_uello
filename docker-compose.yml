@@ -1,0 +1,46 @@
+networks:
+  test_uello:
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: container_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - test_uello
+
+  mysql:
+    image: mysql:latest
+    container_name: container_mysql
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: test_uello
+      MYSQL_ROOT_PASSWORD: root
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - test_uello
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: container_php
+    volumes: 
+      - ./src:/var/www/html
+    ports:
+      - "9000:9000"
+    networks:
+      - test_uello

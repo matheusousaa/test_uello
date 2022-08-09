@@ -1,0 +1,45 @@
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    background-color: #eee;
+}
+
+#modalSheet {
+    margin-top: 10%;
+}
+
+.modal-header {
+    color: #eee;
+    background-color: #e63b4f;
+}
+
+.spin {
+    border: 16px solid #e63b4f;
+    border-radius: 50%;
+    border-top: 16px solid #e63b4fdb;
+    border-right: 16px solid #df4e5fd1;
+    border-bottom: 16px solid #fa8c99;
+    border-left: 16px solid #fec1c8;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
